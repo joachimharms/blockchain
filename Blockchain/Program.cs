@@ -24,6 +24,16 @@ namespace Blockchain
             Console.WriteLine(publicKey.GetAddress(Network.TestNet));
 
             var publicKeyHash = publicKey.Hash;
+            Console.WriteLine(publicKeyHash);
+
+            var mainNetAdress = publicKeyHash.GetAddress(Network.Main);
+            var testNetAdress = publicKeyHash.GetAddress(Network.TestNet);
+
+            Console.WriteLine(mainNetAdress);
+            Console.WriteLine(testNetAdress);
+
+            Console.WriteLine(mainNetAdress.ScriptPubKey);
+            Console.WriteLine(testNetAdress.ScriptPubKey);
 
         }
     }
