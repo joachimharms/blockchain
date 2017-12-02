@@ -26,14 +26,23 @@ namespace Blockchain
             var publicKeyHash = publicKey.Hash;
             Console.WriteLine(publicKeyHash);
 
-            var mainNetAdress = publicKeyHash.GetAddress(Network.Main);
-            var testNetAdress = publicKeyHash.GetAddress(Network.TestNet);
+            var mainNetAddress = publicKeyHash.GetAddress(Network.Main);
+            var testNetAddress = publicKeyHash.GetAddress(Network.TestNet);
 
-            Console.WriteLine(mainNetAdress);
-            Console.WriteLine(testNetAdress);
+            Console.WriteLine(mainNetAddress);
+            Console.WriteLine(testNetAddress);
 
-            Console.WriteLine(mainNetAdress.ScriptPubKey);
-            Console.WriteLine(testNetAdress.ScriptPubKey);
+            Console.WriteLine(mainNetAddress.ScriptPubKey);
+            Console.WriteLine(testNetAddress.ScriptPubKey);
+
+            var paymentScript = publicKeyHash.ScriptPubKey;
+            var sameMainNetAddress = paymentScript.GetDestinationAddress(Network.Main);
+            Console.WriteLine(mainNetAddress == mainNetAddress);
+
+            var samePublicKeyHash = (KeyId)paymentScript.GetDestination();
+            Console.WriteLine(publicKeyHash == samePublicKeyHash);
+
+            var sameMainNetAddress2 = new BitcoinPubKeyAddress(samePublicKeyHash, Network.Main);
 
         }
     }
