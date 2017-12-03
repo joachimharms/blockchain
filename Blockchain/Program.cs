@@ -43,6 +43,7 @@ namespace Blockchain
             Console.WriteLine(publicKeyHash == samePublicKeyHash);
 
             var sameMainNetAddress2 = new BitcoinPubKeyAddress(samePublicKeyHash, Network.Main);
+            Console.WriteLine(mainNetAddress == sameMainNetAddress2);
 
         }
     }
